@@ -1,0 +1,10 @@
+config.py
+test.py
+*.py[oc]
+*.db
+*.project
+*.kpf
+*.swp
+*.svn
+*.settings
+*.pydevproject
