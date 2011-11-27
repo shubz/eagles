@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
+
 """
 main.py
 Created by dn on 2011-07-24.
@@ -13,15 +14,16 @@ import tornado.httpserver
 import tornado.options
 from tornado.options import define, options
 
-from shubz.eagle.handlers import BaseHandler
+from eagles.handlers import *
 
 # server running Options
 define("debug", default=True, help="run the server mode Debug", type=bool)
 define("port", default=8888, help="run on the given port", type=int)
 
-class MainHandler(BaseHandler):
-    def get(self):
-        self.render("index.html", title="旧书楼")
+# mongo server Options
+define("mhost", default='192.168.11.10', help="hostname or IP address of the instance to connect to")
+define("mport", default=8001, help="port number on which to connect", type=int)
+define("mpool_size", default=50, help="The maximum size limit for the connection pool", type=int)
 
 class Application(tornado.web.Application):
     def __init__ (self):
