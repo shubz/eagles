@@ -12,7 +12,7 @@ class MainHandler(BaseHandler):
     @tornado.web.asynchronous
     @gen.engine
     def get(self):
-        response,error = yield gen.Task(self.db.books.find_one,{'_id': ObjectId(id)})
+        response,error = yield gen.Task(self.db.books.find_one,{'_id': ObjectId('234234234')})
         if error['error']:
             raise tornado.web.HTTPError(500)
         book = response[0]

@@ -12,9 +12,9 @@ class BaseHandler(tornado.web.RequestHandler):
                     pool_id=options.mpool_id, 
                     host=options.mhost, 
                     port=options.mport, 
-                    maxcached=options.maxcached, 
-                    maxconnections=options.maxconnections, 
-                    dbname=options.dbname)
+                    maxcached=options.mmaxcached, 
+                    maxconnections=options.mmaxconnections, 
+                    dbname=options.mdbname)
         return self._db
 
     def get_current_user(self):
