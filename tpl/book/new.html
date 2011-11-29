@@ -1,0 +1,12 @@
+{% extends "../base.html" %}
+{% block content %}
+<form action="/books" method="post" accept-charset="utf-8">
+    <label for="name">书名</label><input type="text" name="name" value="" id="name"><br>
+    <label for="category">所属大类</label><input type="text" name="category" value="" id="category"><br>
+    <label for="author">作者</label><input type="text" name="author" value="" id="author"><br>
+    <label for="age">年代</label><input type="text" name="age" value="" id="age"><br>
+    <label for="published_at">发表日期</label><input type="text" name="published_at" value="" id="published_at"><br>
+    <label for="intro">简介</label><textarea name="intro" rows="8" cols="40"></textarea><br>
+    <p><input type="submit" value="Continue &rarr;"></p>
+</form>
+{% end %}
