@@ -2,7 +2,7 @@ import re
 import tornado.web
 
 from settings import settings_dict as settings
-from eagles.handlers import *
+from handlers.book import *
 
 routes = [
       (r"/", MainHandler),

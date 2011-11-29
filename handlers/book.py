@@ -2,13 +2,18 @@
 
 import tornado 
 
-from eagles.models import *
+from tornado import gen
+from bson import ObjectId
 
-class BaseHandler(tornado.web.RequestHandler):
-    def get_current_user(self):
-        return self.get_secure_cookie("user")
+from core.handler import BaseHandler
 
 class MainHandler(BaseHandler):
+
+    @tornado.web.asynchronous
+    @gen.engine
     def get(self):
-        book = Book().find('4ed0b5b1421aa94ed5000000')
+        response,error = yield gen.Task(self.db.books.find_one,{'_id': ObjectId(id)})
+        if error['error']:
+            raise tornado.web.HTTPError(500)
+        book = response[0]
         self.render("index.html", title=book['name'], content=book['intro'])
