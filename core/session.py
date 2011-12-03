@@ -26,7 +26,6 @@ class FileEngine(BaseEngine):
     def get_session_path(self, session_id):
         return  os.path.join(self.session_dir, session_id)
 
-    """使用文件存储的session引擎"""
     def read(self, session_id):
         """读取session内容"""
         try:
