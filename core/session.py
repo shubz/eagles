@@ -107,7 +107,7 @@ def session(method):
     def wrapper(self, *args, **kwargs):
         session_engine = self.application.settings['session_engine']
         timeout = self.application.settings['session_timeout']
-        time_key = self.application.settings['session_timeout']
+        time_key = self.application.settings['session_time_key']
         cookie_session_key = self.application.settings['cookie_session_key']
 
         self.session = SessionManager(session_engine, timeout, time_key)
