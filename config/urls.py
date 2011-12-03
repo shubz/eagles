@@ -6,6 +6,7 @@ from handlers import book,site
 
 routes = [
       (r"/", site.MainHandler),
+      (r"/sess", site.SessHandler),
       (r"/books/new", book.NewHandler),
       (re.escape(settings['static_url_prefix']) + r"(.*)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
 ]

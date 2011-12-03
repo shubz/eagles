@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 import tornado.web
 import asyncmongo
 
@@ -20,3 +22,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("user")
 
+class AdminHandler(BaseHandler):
+    """用于后台的请求处理, 前台和后台分别使用不同的cookie key"""
+    def get_current_user(self):
+        return self.get_secure_cookie("admin")
