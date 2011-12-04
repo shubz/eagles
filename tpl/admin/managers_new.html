@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title%}
+新建后台用户 - 旧书楼管理后台
+{% end %}
+
+{% block content %}
+<div class="content">
+    <div class="page-header">
+        <h2>新建/编辑后台用户</h2>
+    </div>
+    <form action="/admin/managers" method="post">
+        {{ xsrf_form_html() }}
+        <fieldset>
+            <div class="clearfix">
+                <label for="email">邮件地址</label>
+                <div class="input">
+                    <input class="xlarge" id="email" name="email" size="30" value="{{ email }}" type="email" required="required" autofocus="autofocus" placeholder="输入用于登陆的用户名">
+                </div>
+            </div>
+            <div class="clearfix {% if errors.has_key('password2') %} error {% end %}">
+                <label for="password">密码</label>
+                <div class="input">
+                    <input class="xlarge" pattern=".{5,20}" id="password" name="password" size="30" type="password" required="required" placeholder="输入用于登陆的密码">
+                    <span class="help-block">6-20个任意字符</span>
+                </div>
+            </div>
+            <div class="clearfix {% if errors.has_key('password2') %} error {% end %}">
+                <label for="password2">重复密码</label>
+                <div class="input">
+                    <input class="xlarge" id="password2" name="password2" size="30" type="password" required="required" placeholder="重复用于登陆的密码">
+                    <span class="help-inline">{% if errors.has_key('password2') %} {{ errors['password2'] }} {% end %}</span></span>
+                </div>
+            </div>
+            <div class="actions">
+                <input type="submit" class="btn primary" value="提交">
+                <button class="btn" type="reset" onclick="history.go(-1)">取消</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% end %}

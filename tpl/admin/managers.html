@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title%}
+后台用户列表 - 旧书楼管理后台
+{% end %}
+
+{% block content %}
+<div class="content">
+    <div class="page-header">
+        <div class="row">
+            <div class="span4"><h2>用户列表</h2></div>
+            <div class="span12"><h3 class="pull-right"><a href="/admin/managers/new">新建</a></h3></div>
+        </div>
+    </div>
+    <table class="bordered-table zebra-striped">
+        <thead>
+            <tr>
+                <th>邮件地址</th>
+                <th>创建于</th>
+                <th>最后登陆</th>
+                <th>最后登陆ip</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for manager in managers%}
+                {% block manager %}
+            <tr>
+                <td>{{ manager['email'] }}</td>
+                <td>{{ manager['created_time'] }}</td>
+                <td>{{ manager['last_login'] }}</td>
+                <td>{{ manager['last_ip'] }}</td>
+                <td>
+                    <a href="#">编辑</a> |
+                    <a href="#">删除</a>
+                </td>
+            </tr>
+                {% end %}
+            {% end %}
+        </tbody>
+    </table>
+</div>
+{% end %}

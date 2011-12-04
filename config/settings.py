@@ -14,7 +14,7 @@ settings_dict = dict(debug = options.debug,
         cookie_secret = "b23aadc7b8c0dbc5a9b38341944c3998b23aadc7b8",
         login_url = "/login",
         autoescape = None,
-        session_engine = FileEngine(session_dir = './sessions'),
+        session_engine = FileEngine(session_dir = '../sessions'),
         session_timeout = 20*60, #20分钟
         session_time_key = '___timeout___', #内部记录session生成时间的key
         cookie_session_key = 'session_id', #cookie中记录session id的key
