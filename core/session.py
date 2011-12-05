@@ -31,7 +31,7 @@ class FileEngine(BaseEngine):
         try:
             session_path = self.get_session_path(session_id)
             data = pickle.load(open(session_path, 'r'))
-            if type(data) == type({}):
+            if isinstance(data, dict):
                 return data
             else:
                 return None
