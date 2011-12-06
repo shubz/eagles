@@ -15,21 +15,21 @@
             <div class="clearfix">
                 <label for="email">邮件地址</label>
                 <div class="input">
-                    <input class="xlarge" id="email" name="email" size="30" value="{{ email }}" type="email" required="required" autofocus="autofocus" placeholder="输入用于登陆的用户名">
+                    <input class="xlarge" id="email" name="email" size="30" value="{{ form['email'] }}" type="email" required="required" autofocus="autofocus" placeholder="输入用于登陆的用户名">
                 </div>
             </div>
-            <div class="clearfix {% if errors.has_key('password2') %} error {% end %}">
+            <div class="clearfix {% if form.has_error('password2') %} error {% end %}">
                 <label for="password">密码</label>
                 <div class="input">
                     <input class="xlarge" pattern=".{5,20}" id="password" name="password" size="30" type="password" required="required" placeholder="输入用于登陆的密码">
                     <span class="help-block">6-20个任意字符</span>
                 </div>
             </div>
-            <div class="clearfix {% if errors.has_key('password2') %} error {% end %}">
+            <div class="clearfix {% if form.has_error('password2') %} error {% end %}">
                 <label for="password2">重复密码</label>
                 <div class="input">
                     <input class="xlarge" id="password2" name="password2" size="30" type="password" required="required" placeholder="重复用于登陆的密码">
-                    <span class="help-inline">{% if errors.has_key('password2') %} {{ errors['password2'] }} {% end %}</span></span>
+                    <span class="help-inline">{{ form.get_error('password2') }}</span></span>
                 </div>
             </div>
             <div class="actions">

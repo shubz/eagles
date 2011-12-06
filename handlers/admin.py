@@ -10,6 +10,7 @@ from bson import ObjectId
 
 from core.handler import AdminHandler
 from core.session import session
+from core.form import Form
 
 class MainHandler(AdminHandler):
 
@@ -39,18 +40,17 @@ class ManagersHandler(AdminHandler):
     @gen.engine
     def post(self):
         """添加管理员"""
-        email = self.get_argument('email')
-        password = self.get_argument('password')
-        password2 = self.get_argument('password2')
-        if password != password2:
-            errors = {'password2':"两次密码输入不一致"}
-            self.render('admin/managers_new.html', email=email, errors=errors)
+        form = Form(self)
+        form.get_email('email')
+        form.get_two_password('password', 'password2')
+        if form.errors:
+            self.render('admin/managers_new.html', form=form)
         else:
             salt = str(uuid.uuid1())[0:6]
-            password = hashlib.md5(password+salt).hexdigest()
+            password = hashlib.md5(form['password']+salt).hexdigest()
             ip = self.request.remote_ip
             response,error = yield gen.Task(self.db.managers.insert,{
-                'email':email, 
+                'email':form['email'], 
                 'password':password,
                 'salt':salt,
                 'created_time':datetime.datetime.now(),
@@ -62,5 +62,6 @@ class ManagersNewHandler(AdminHandler):
     """添加管理员"""
     @tornado.web.asynchronous
     def get(self):
-        self.render('admin/managers_new.html', email='', errors={})
+        form = Form(self)
+        self.render('admin/managers_new.html', form=form)
         
